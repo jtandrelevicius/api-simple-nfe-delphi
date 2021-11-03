@@ -38,10 +38,8 @@ begin
       FConn.Params.Values['Database']   := ini.ReadString('conexao', 'Database', '');
       FConn.Params.Values['User_Name']  := ini.ReadString('conexao', 'User_Name', '');
       FConn.Params.Values['Password']   := ini.ReadString('conexao', 'Password', '');
-      FConn.Params.Values['Protocolo']  := ini.ReadString('conexao', 'Protocolo', '');
       FConn.Params.Add('Server='+ ini.ReadString('conexao', 'Server', ''));
       FConn.Params.Add('Port='+ ini.ReadString('conexao', 'Port', ''));
-
 
       Result := 'OK';
     except on ex:exception do
