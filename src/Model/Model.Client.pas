@@ -8,7 +8,7 @@ uses FireDAC.Stan.Intf, FireDAC.Stan.Option,
   Data.DB, FireDAC.Comp.Client, System.SysUtils, Model.Connection;
 
 type
-  ModelClient = class
+  TModelClient = class
     private
      FID_CLIENTE : Integer;
      FNOME : String;
@@ -27,6 +27,7 @@ type
      FDATA_ALTERACAO: TDateTime;
      FUSUARIO_CADASTRO: String;
      FCPF_CNPJ: String;
+     FSTATUS: String;
     public
      constructor Create;
      destructor Destroy; override;
@@ -47,6 +48,7 @@ type
      property DATA_ALTERACAO: TDateTime read FDATA_ALTERACAO write FDATA_ALTERACAO;
      property USUARIO_CADASTRO: String read FUSUARIO_CADASTRO write FUSUARIO_CADASTRO;
      property CPF_CNPJ: String read FCPF_CNPJ write FCPF_CNPJ;
+     property STATUS: String read FSTATUS write FSTATUS;
 
      function getClient(order_by: String; out erro:String): TFDQuery;
      function insert(out erro: String): Boolean;
@@ -56,24 +58,24 @@ type
 
 implementation
 
-{ ModelClient }
+{ TModelClient }
 
-constructor ModelClient.Create;
+constructor TModelClient.Create;
 begin
 Model.Connection.Connect;
 end;
 
-function ModelClient.delete(out erro: String): Boolean;
+function TModelClient.delete(out erro: String): Boolean;
 begin
 
 end;
 
-destructor ModelClient.Destroy;
+destructor TModelClient.Destroy;
 begin
 Model.Connection.Disconnect;
 end;
 
-function ModelClient.getClient(order_by: String; out erro: String): TFDQuery;
+function TModelClient.getClient(order_by: String; out erro: String): TFDQuery;
 var
   qry : TFDQuery;
 begin
@@ -113,7 +115,7 @@ begin
 
 end;
 
-function ModelClient.insert(out erro: String): Boolean;
+function TModelClient.insert(out erro: String): Boolean;
 begin
 
 end;

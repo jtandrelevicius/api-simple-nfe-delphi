@@ -4,7 +4,7 @@ interface
 
 uses FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
-  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Phys.IBBase, FireDAC.Phys.FB,
   Data.DB, FireDAC.Comp.Client,IniFiles, System.SysUtils;
 
 var
@@ -34,6 +34,13 @@ begin
       ini := TIniFile.Create(arq_ini);
 
       //BUSCA OS DADOS CONTIDOS NO ARQUIVO
+      FConn.Params.Values['DriverID']   := ini.ReadString('conexao', 'DriverID', '');
+      FConn.Params.Values['Database']   := ini.ReadString('conexao', 'Database', '');
+      FConn.Params.Values['User_Name']  := ini.ReadString('conexao', 'User_Name', '');
+      FConn.Params.Values['Password']   := ini.ReadString('conexao', 'Password', '');
+      FConn.Params.Values['Protocolo']  := ini.ReadString('conexao', 'Protocolo', '');
+      FConn.Params.Add('Server='+ ini.ReadString('conexao', 'Server', ''));
+      FConn.Params.Add('Port='+ ini.ReadString('conexao', 'Port', ''));
 
 
       Result := 'OK';
@@ -43,6 +50,7 @@ begin
   finally
     if Assigned(ini)then
        ini.Free;
+
   end;
 
 end;

@@ -20,7 +20,7 @@ end;
 begin
   begin
   THorse.Use(Jhonson());
-  //TControllerClient.Router;
+  TControllerClient.Router;
   THorse.Listen(9000, OnListen);
   end;
 end.
