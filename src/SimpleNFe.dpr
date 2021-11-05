@@ -25,8 +25,8 @@ uses
   Model.Payment in 'Model\Model.Payment.pas',
   Controller.Box in 'Controller\Controller.Box.pas',
   Model.Box in 'Model\Model.Box.pas',
-  Controller in 'Controller\Controller.User',
-  Model in 'Model\Model.User';
+  Controller.Users in 'Controller\Controller.Users.pas',
+  Model.Users in 'Model\Model.Users.pas';
 
 procedure OnListen(aListen: THorse);
 begin
