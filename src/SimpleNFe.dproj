@@ -186,6 +186,20 @@
         <DCCReference Include="Model\Model.Client.pas"/>
         <DCCReference Include="Controller\Controller.Product.pas"/>
         <DCCReference Include="Model\Model.Product.pas"/>
+        <DCCReference Include="Controller\Controller.Company.pas"/>
+        <DCCReference Include="Model\Model.Company.pas"/>
+        <DCCReference Include="Controller\Controller.Provider.pas"/>
+        <DCCReference Include="Model\Model.Provider.pas"/>
+        <DCCReference Include="Controller\Controller.Sales.pas"/>
+        <DCCReference Include="Model\Model.Sales.pas"/>
+        <DCCReference Include="Controller\Controller.Sales.Items.pas"/>
+        <DCCReference Include="Model\Model.Sales.Items.pas"/>
+        <DCCReference Include="Controller\Controller.Payment.pas"/>
+        <DCCReference Include="Model\Model.Payment.pas"/>
+        <DCCReference Include="Controller\Controller.Box.pas"/>
+        <DCCReference Include="Model\Model.Box.pas"/>
+        <DCCReference Include="Controller\Controller.User"/>
+        <DCCReference Include="Model\Model.User"/>
         <None Include="ModelSupport_SimpleNFe\default.txaPackage"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -209,6 +223,12 @@
                 </Source>
             </Delphi.Personality>
             <Deployment Version="3">
+                <DeployFile LocalName="Controller\Controller.User" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
                     <Platform Name="OSX32">
                         <Overwrite>true</Overwrite>

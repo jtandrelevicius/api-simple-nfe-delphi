@@ -12,7 +12,21 @@ uses
   Model.Connection in 'Model\Model.Connection.pas',
   Model.Client in 'Model\Model.Client.pas',
   Controller.Product in 'Controller\Controller.Product.pas',
-  Model.Product in 'Model\Model.Product.pas';
+  Model.Product in 'Model\Model.Product.pas',
+  Controller.Company in 'Controller\Controller.Company.pas',
+  Model.Company in 'Model\Model.Company.pas',
+  Controller.Provider in 'Controller\Controller.Provider.pas',
+  Model.Provider in 'Model\Model.Provider.pas',
+  Controller.Sales in 'Controller\Controller.Sales.pas',
+  Model.Sales in 'Model\Model.Sales.pas',
+  Controller.Sales.Items in 'Controller\Controller.Sales.Items.pas',
+  Model.Sales.Items in 'Model\Model.Sales.Items.pas',
+  Controller.Payment in 'Controller\Controller.Payment.pas',
+  Model.Payment in 'Model\Model.Payment.pas',
+  Controller.Box in 'Controller\Controller.Box.pas',
+  Model.Box in 'Model\Model.Box.pas',
+  Controller in 'Controller\Controller.User',
+  Model in 'Model\Model.User';
 
 procedure OnListen(aListen: THorse);
 begin
