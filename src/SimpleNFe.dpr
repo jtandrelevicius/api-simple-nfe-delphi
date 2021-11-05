@@ -26,7 +26,9 @@ uses
   Controller.Box in 'Controller\Controller.Box.pas',
   Model.Box in 'Model\Model.Box.pas',
   Controller.Users in 'Controller\Controller.Users.pas',
-  Model.Users in 'Model\Model.Users.pas';
+  Model.Users in 'Model\Model.Users.pas',
+  uFormat in 'Units\uFormat.pas',
+  uFunctions in 'Units\uFunctions.pas';
 
 procedure OnListen(aListen: THorse);
 begin
@@ -38,6 +40,11 @@ begin
   THorse.Use(Jhonson());
   TControllerClient.Router;
   TControllerProduct.Router;
+  TControllerBox.Router;
+  TControllerCompany.Router;
+  TControllerPayment.Router;
+  TControllerProvider.Router;
+  TControllerSalesItems.Router;
   THorse.Listen(9000, OnListen);
   end;
 end.

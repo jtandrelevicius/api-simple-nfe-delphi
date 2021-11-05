@@ -19,73 +19,73 @@ implementation
 
 procedure getClient(aReq:THorseRequest; aRes:THorseResponse; aNext:TNextProc);
 var
-  cli : TModelClient;
+  modc : TModelClient;
   qry : TFDQuery;
   erro : String;
-  arrayClient : TJSONArray;
+  arrayList : TJSONArray;
 begin
      try
 
-       cli := TModelClient.Create;
+       modc := TModelClient.Create;
      except
        aRes.Send('Erro ao conectar com o banco de dados').Status(500);
        exit;
      end;
 
      try
-       qry := cli.getClient('', erro);
-       arrayClient := qry.ToJSONArray();
-       aRes.Send<TJSONArray>(arrayClient);
+       qry := modc.getClient('', erro);
+       arrayList := qry.ToJSONArray();
+       aRes.Send<TJSONArray>(arrayList);
 
      finally
        qry.Free;
-       cli.Free;
+       modc.Free;
      end;
 
 end;
 
 procedure getClientID(aReq:THorseRequest; aRes:THorseResponse; aNext:TNextProc);
 var
-  cli : TModelClient;
+  modc : TModelClient;
   qry : TFDQuery;
   erro : String;
-  objClient : TJSONObject;
+  objJson : TJSONObject;
 begin
      try
-       cli := TModelClient.Create;
-       cli.ID_CLIENTE := StrToInt(aReq.Params['id']);
+       modc := TModelClient.Create;
+       modc.ID_CLIENTE := StrToInt(aReq.Params['id']);
      except
        aRes.Send('Erro ao conectar com o banco de dados').Status(500);
        exit;
      end;
 
      try
-       qry := cli.getClient('', erro);
+       qry := modc.getClient('', erro);
 
        if qry.RecordCount > 0 then
        begin
-         objClient := qry.ToJSONObject;
-         aRes.Send<TJSONObject>(objClient);
+         objJson := qry.ToJSONObject;
+         aRes.Send<TJSONObject>(objJson);
        end
        else
          aRes.Send('Cliente nao encontrado').Status(400);
 
      finally
        qry.Free;
-       cli.Free;
+       modc.Free;
      end;
 
 end;
 
 procedure addClient(aReq:THorseRequest; aRes:THorseResponse; aNext:TNextProc);
 var
-  cli : TModelClient;
-  objClient : TJSONObject;
+  modc : TModelClient;
+  objJson : TJSONObject;
   erro : String;
   body : TJSONValue;
 begin
   try
-    cli := TModelClient.Create;
+    modc := TModelClient.Create;
  except
    aRes.Send('Erro ao conectar com o banco de dados').Status(500);
   end;
@@ -94,22 +94,22 @@ begin
    try
      body := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(aReq.Body), 0) as TJsonValue;
 
-     cli.NOME := body.GetValue<string>('nome', '');
-     cli.EMAIL := body.GetValue<string>('email', '');
-     cli.TELEFONE := body.GetValue<string>('telefone', '');
-     cli.CELULAR := body.GetValue<string>('celular', '');
-     cli.CEP := body.GetValue<string>('cep', '');
-     cli.TIPO_LOGRADOURO := body.GetValue<string>('tipo_logradouro', '');
-     cli.LOGRADOURO := body.GetValue<string>('logradouro', '');
-     cli.NUMERO := body.GetValue<string>('numero', '');
-     cli.COMPLEMENTO := body.GetValue<string>('complemento', '');
-     cli.BAIRRO := body.GetValue<string>('bairro', '');
-     cli.UF := body.GetValue<string>('uf', '');
-     cli.CIDADE := body.GetValue<string>('cidade', '');
+     modc.NOME := body.GetValue<string>('nome', '');
+     modc.EMAIL := body.GetValue<string>('email', '');
+     modc.TELEFONE := body.GetValue<string>('telefone', '');
+     modc.CELULAR := body.GetValue<string>('celular', '');
+     modc.CEP := body.GetValue<string>('cep', '');
+     modc.TIPO_LOGRADOURO := body.GetValue<string>('tipo_logradouro', '');
+     modc.LOGRADOURO := body.GetValue<string>('logradouro', '');
+     modc.NUMERO := body.GetValue<string>('numero', '');
+     modc.COMPLEMENTO := body.GetValue<string>('complemento', '');
+     modc.BAIRRO := body.GetValue<string>('bairro', '');
+     modc.UF := body.GetValue<string>('uf', '');
+     modc.CIDADE := body.GetValue<string>('cidade', '');
      //cli.DATA_CADASTRO := strToDate(body.GetValue<string>('data_cadastro', ''));
-     cli.STATUS := body.GetValue<string>('status', '');
-     cli.CPF_CNPJ := body.GetValue<string>('cpf_cnpj', '');
-     cli.insert(erro);
+     modc.STATUS := body.GetValue<string>('status', '');
+     modc.CPF_CNPJ := body.GetValue<string>('cpf_cnpj', '');
+     modc.insert(erro);
 
      body.Free;
 
@@ -123,26 +123,26 @@ begin
    end;
    end;
 
-     objClient := TJSONObject.Create;
-     objClient.AddPair('id', cli.ID_CLIENTE.ToString);
+     objJson := TJSONObject.Create;
+     objJson.AddPair('id', modc.ID_CLIENTE.ToString);
 
-     aRes.Send<TJSONObject>(objClient).Status(201);
+     aRes.Send<TJSONObject>(objJson).Status(201);
  finally
-  cli.Free;
+  modc.Free;
  end;
 
 end;
 
 procedure deleteClient(aReq:THorseRequest; aRes:THorseResponse; aNext:TNextProc);
 var
-    cli : TModelClient;
-    objClient : TJSONObject;
+    modc : TModelClient;
+    objJson : TJSONObject;
     erro : String;
 
 begin
     // Conexao com o banco...
      try
-       cli := TModelClient.Create;
+       modc := TModelClient.Create;
      except
        aRes.Send('Erro ao conectar com o banco de dados').Status(500);
        exit;
@@ -151,9 +151,9 @@ begin
 
     try
         try
-            cli.ID_CLIENTE := aReq.Params['id'].ToInteger;
+            modc.ID_CLIENTE := aReq.Params['id'].ToInteger;
 
-            if NOT cli.delete(erro) then
+            if NOT modc.delete(erro) then
                 raise Exception.Create(erro);
 
         except on ex:exception do
@@ -164,26 +164,26 @@ begin
         end;
 
 
-        objClient := TJSONObject.Create;
-        objClient.AddPair('id', cli.ID_CLIENTE.ToString);
+        objJson := TJSONObject.Create;
+        objJson.AddPair('id', modc.ID_CLIENTE.ToString);
 
-        aRes.Send<TJSONObject>(objClient);
+        aRes.Send<TJSONObject>(objJson);
     finally
-        cli.Free;
+        modc.Free;
     end;
 
 end;
 
 procedure updateClient(aReq:THorseRequest; aRes:THorseResponse; aNext:TNextProc);
 var
-  cli : TModelClient;
-  objClient : TJSONObject;
+  modc : TModelClient;
+  objJson : TJSONObject;
   erro : String;
   body : TJSONValue;
 begin
     // Conexao com o banco...
     try
-        cli := TModelClient.Create;
+        modc := TModelClient.Create;
     except
         aRes.Send('Erro ao conectar com o banco').Status(500);
         exit;
@@ -193,23 +193,23 @@ begin
         try
             body := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(aReq.Body), 0) as TJsonValue;
 
-            cli.ID_CLIENTE := body.GetValue<integer>('id', 0);
-            cli.NOME := body.GetValue<string>('nome', '');
-            cli.EMAIL := body.GetValue<string>('email', '');
-            cli.TELEFONE := body.GetValue<string>('telefone', '');
-            cli.CELULAR := body.GetValue<string>('celular', '');
-            cli.CEP := body.GetValue<string>('cep', '');
-            cli.TIPO_LOGRADOURO := body.GetValue<string>('tipo_logradouro', '');
-            cli.LOGRADOURO := body.GetValue<string>('logradouro', '');
-            cli.NUMERO := body.GetValue<string>('numero', '');
-            cli.COMPLEMENTO := body.GetValue<string>('complemento', '');
-            cli.BAIRRO := body.GetValue<string>('bairro', '');
-            cli.UF := body.GetValue<string>('uf', '');
-            cli.CIDADE := body.GetValue<string>('cidade', '');
+            modc.ID_CLIENTE := body.GetValue<integer>('id', 0);
+            modc.NOME := body.GetValue<string>('nome', '');
+            modc.EMAIL := body.GetValue<string>('email', '');
+            modc.TELEFONE := body.GetValue<string>('telefone', '');
+            modc.CELULAR := body.GetValue<string>('celular', '');
+            modc.CEP := body.GetValue<string>('cep', '');
+            modc.TIPO_LOGRADOURO := body.GetValue<string>('tipo_logradouro', '');
+            modc.LOGRADOURO := body.GetValue<string>('logradouro', '');
+            modc.NUMERO := body.GetValue<string>('numero', '');
+            modc.COMPLEMENTO := body.GetValue<string>('complemento', '');
+            modc.BAIRRO := body.GetValue<string>('bairro', '');
+            modc.UF := body.GetValue<string>('uf', '');
+            modc.CIDADE := body.GetValue<string>('cidade', '');
             //cli.DATA_CADASTRO := strToDate(body.GetValue<string>('data_cadastro', ''));
-            cli.STATUS := body.GetValue<string>('status', '');
-            cli.CPF_CNPJ := body.GetValue<string>('cpf_cnpj', '');
-            cli.update(erro);
+            modc.STATUS := body.GetValue<string>('status', '');
+            modc.CPF_CNPJ := body.GetValue<string>('cpf_cnpj', '');
+            modc.update(erro);
 
             body.Free;
 
@@ -224,12 +224,12 @@ begin
         end;
 
 
-        objClient := TJSONObject.Create;
-        objClient.AddPair('id', cli.ID_CLIENTE.ToString);
+        objJson := TJSONObject.Create;
+        objJson.AddPair('id', modc.ID_CLIENTE.ToString);
 
-        aRes.Send<TJSONObject>(objClient).Status(200);
+        aRes.Send<TJSONObject>(objJson).Status(200);
     finally
-        cli.Free;
+        modc.Free;
     end;
 
 end;

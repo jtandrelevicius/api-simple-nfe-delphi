@@ -35,6 +35,8 @@ type
       FSTATUS : String;
       FCEST : String;
       FORIGEM : Double;
+      FDATA_ALTERACAO: TDateTime;
+      FDATA_CADASTRO: TDateTime;
     public
       constructor Create;
       destructor Destroy; override;
@@ -59,6 +61,8 @@ type
       property COFINS_CST: String read FCOFINS_CST write FCOFINS_CST;
       property COFINS_PERCENTUAL: Double read FCOFINS_PERCENTUAL write FCOFINS_PERCENTUAL;
       property COFINS_VALOR: Double read FCOFINS_VALOR write FCOFINS_VALOR;
+      property DATA_CADASTRO: TDateTime read FDATA_CADASTRO write FDATA_CADASTRO;
+      property DATA_ALTERACAO: TDateTime read FDATA_ALTERACAO write FDATA_ALTERACAO;
       property USUARIO_CADASTRO: String read FUSUARIO_CADASTRO write FUSUARIO_CADASTRO;
       property STATUS: String read FSTATUS write FSTATUS;
       property CEST: String read FCEST write FCEST;
@@ -176,9 +180,9 @@ begin
             Active := false;
             sql.Clear;
             SQL.Add('INSERT INTO PRODUTOS(COD_PRODUTO_FORNECEDOR, DESCRICAO, VALOR_UNITARIO, FORNECEDOR, EAN, COD_BARRAS, UNIDADE, NCM, CFOP, QUANTIDADE, ICMS_CST, ICMS_CSON, ICMS_PERCENTUAL, ICMS_VALOR, PIS_CST, PIS_PERCENTUAL, PIS_VALOR,');
-            SQL.Add('COFINS_CST, COFINS_PERCENTUAL, COFINS_VALOR, USUARIO_CADASTRO, STATUS, CEST, ORIGEM)');
+            SQL.Add('COFINS_CST, COFINS_PERCENTUAL, COFINS_VALOR, DATA_CADASTRO, USUARIO_CADASTRO, STATUS, CEST, ORIGEM)');
             SQL.Add('VALUES(:COD_PRODUTO_FORNECEDOR, :DESCRICAO, :VALOR_UNITARIO, :FORNECEDOR, :EAN, :COD_BARRAS, :UNIDADE, :NCM, :CFOP, :QUANTIDADE, :ICMS_CST, :ICMS_CSON, :ICMS_PERCENTUAL, :ICMS_VALOR, :PIS_CST, :PIS_PERCENTUAL, :PIS_VALOR,');
-            SQL.Add(':COFINS_CST, :COFINS_PERCENTUAL, :COFINS_VALOR, :USUARIO_CADASTRO, :STATUS, :CEST, :ORIGEM)');
+            SQL.Add(':COFINS_CST, :COFINS_PERCENTUAL, :COFINS_VALOR, :DATA_CADASTRO, :USUARIO_CADASTRO, :STATUS, :CEST, :ORIGEM)');
             ParamByName('COD_PRODUTO_FORNECEDOR').Value := COD_PRODUTO_FORNECEDOR;
             ParamByName('DESCRICAO').Value := DESCRICAO;
             ParamByName('VALOR_UNITARIO').Value := VALOR_UNITARIO;
@@ -199,6 +203,7 @@ begin
             ParamByName('COFINS_CST').Value := COFINS_CST;
             ParamByName('COFINS_PERCENTUAL').Value := COFINS_PERCENTUAL;
             ParamByName('COFINS_VALOR').Value := COFINS_VALOR;
+            ParamByName('DATA_CADASTRO').Value := Now;
             ParamByName('USUARIO_CADASTRO').Value := USUARIO_CADASTRO;
             ParamByName('STATUS').Value := STATUS;
             ParamByName('CEST').Value := CEST;

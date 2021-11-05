@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{E16AE895-B333-47DF-AD12-4D450D3CC0CD}</ProjectGuid>
         <ProjectVersion>18.8</ProjectVersion>
-        <FrameworkType>None</FrameworkType>
+        <FrameworkType>FMX</FrameworkType>
         <MainSource>SimpleNFe.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
@@ -200,6 +200,8 @@
         <DCCReference Include="Model\Model.Box.pas"/>
         <DCCReference Include="Controller\Controller.Users.pas"/>
         <DCCReference Include="Model\Model.Users.pas"/>
+        <DCCReference Include="Units\uFormat.pas"/>
+        <DCCReference Include="Units\uFunctions.pas"/>
         <None Include="ModelSupport_SimpleNFe\default.txaPackage"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
