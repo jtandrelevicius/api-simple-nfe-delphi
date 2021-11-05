@@ -225,7 +225,7 @@ begin
 
 
         objClient := TJSONObject.Create;
-        objClient.AddPair('id_cliente', cli.ID_CLIENTE.ToString);
+        objClient.AddPair('id', cli.ID_CLIENTE.ToString);
 
         aRes.Send<TJSONObject>(objClient).Status(200);
     finally

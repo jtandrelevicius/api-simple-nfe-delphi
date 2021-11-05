@@ -184,6 +184,8 @@
         <DCCReference Include="Controller\Controller.Client.pas"/>
         <DCCReference Include="Model\Model.Connection.pas"/>
         <DCCReference Include="Model\Model.Client.pas"/>
+        <DCCReference Include="Controller\Controller.Product.pas"/>
+        <DCCReference Include="Model\Model.Product.pas"/>
         <None Include="ModelSupport_SimpleNFe\default.txaPackage"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

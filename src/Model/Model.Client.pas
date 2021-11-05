@@ -234,12 +234,26 @@ begin
         begin
             Active := false;
             sql.Clear;
-            SQL.Add('UPDATE TAB_CLIENTE SET NOME=:NOME, EMAIL=:EMAIL, FONE=:FONE');
-            SQL.Add('WHERE ID_CLIENTE=:ID_CLIENTE');
+            SQL.Add('UPDATE CLIENTES SET NOME=:NOME, EMAIL=:EMAIL, TELEFONE=:TELEFONE, CELULAR=:CELULAR, CEP=:CEP, TIPO_LOGRADOURO=:TIPO_LOGRADOURO, LOGRADOURO=:LOGRADOURO, NUMERO=:NUMERO, COMPLEMENTO=:COMPLEMENTO, BAIRRO=:BAIRRO,');
+            sql.Add('UF=:UF, CIDADE=:CIDADE, USUARIO_CADASTRO=:USUARIO_CADASTRO, CPF_CNPJ=:CPF_CNPJ, STATUS=:STATUS');
+            SQL.Add('WHERE ID=:ID');
             ParamByName('NOME').Value := NOME;
             ParamByName('EMAIL').Value := EMAIL;
-            //ParamByName('FONE').Value := FONE;
-            ParamByName('ID_CLIENTE').Value := ID_CLIENTE;
+            ParamByName('TELEFONE').Value := TELEFONE;
+            ParamByName('CELULAR').Value := CELULAR;
+            ParamByName('CEP').Value := CEP;
+            ParamByName('TIPO_LOGRADOURO').Value := TIPO_LOGRADOURO;
+            ParamByName('LOGRADOURO').Value := LOGRADOURO;
+            ParamByName('NUMERO').Value := NUMERO;
+            ParamByName('COMPLEMENTO').Value := COMPLEMENTO;
+            ParamByName('BAIRRO').Value := BAIRRO;
+            ParamByName('UF').Value := UF;
+            ParamByName('CIDADE').Value := CIDADE;
+            //ParamByName('DATA_CADASTRO').Value := DATA_CADASTRO;
+            ParamByName('USUARIO_CADASTRO').Value := USUARIO_CADASTRO;
+            ParamByName('CPF_CNPJ').Value := CPF_CNPJ;
+            ParamByName('STATUS').Value := STATUS;
+            ParamByName('ID').Value := ID_CLIENTE;
             ExecSQL;
         end;
 
