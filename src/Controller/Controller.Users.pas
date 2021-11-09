@@ -67,7 +67,7 @@ begin
          aRes.Send<TJSONObject>(objJson);
        end
        else
-         aRes.Send('Cliente nao encontrado').Status(400);
+         aRes.Send('Usuario nao encontrado').Status(400);
 
      finally
        qry.Free;

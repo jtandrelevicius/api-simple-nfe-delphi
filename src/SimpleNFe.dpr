@@ -47,6 +47,7 @@ begin
   TControllerProvider.Router;
   TControllerSalesItems.Router;
   TControllerSales.Router;
+  TControllerUsers.Router;
   THorse.Listen(9000, OnListen);
   end;
 end.

@@ -153,14 +153,14 @@ begin
     if NOME.IsEmpty then
     begin
         Result := false;
-        erro := 'Informe o nome do cliente';
+        erro := 'Informe o nome do usuario';
         exit;
     end;
 
     if CELULAR.IsEmpty then
     begin
       Result := false;
-      erro := 'Informe o celular do cliente';
+      erro := 'Informe o celular do usuario';
       exit;
     end;
 
