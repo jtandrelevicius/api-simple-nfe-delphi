@@ -45,6 +45,7 @@ begin
   TControllerPayment.Router;
   TControllerProvider.Router;
   TControllerSalesItems.Router;
+  TControllerSales.Router;
   THorse.Listen(9000, OnListen);
   end;
 end.

@@ -67,7 +67,7 @@ begin
          aRes.Send<TJSONObject>(objJson);
        end
        else
-         aRes.Send('Cliente nao encontrado').Status(400);
+         aRes.Send('Item  nao encontrado').Status(400);
 
      finally
        qry.Free;
@@ -93,8 +93,8 @@ begin
    try
      body := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(aReq.Body), 0) as TJsonValue;
 
-     modc.ID_VENDA := body.GetValue<integer>('id_venda', '');
-     modc.ID_PRODUTO := body.GetValue<integer>('id_produto', '');
+     modc.ID_VENDA := body.GetValue<integer>('id_venda', 0);
+     modc.ID_PRODUTO := body.GetValue<integer>('id_produto', 0);
      modc.PRODUTO := body.GetValue<string>('produto', '');
      modc.VALOR := TrataValor(body.GetValue<string>('valor', ''));
      modc.TOTAL := TrataValor(body.GetValue<string>('total', ''));
@@ -185,7 +185,13 @@ begin
             body := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(aReq.Body), 0) as TJsonValue;
 
             modc.ID_VENDAS_ITENS := body.GetValue<integer>('id', 0);
-
+            modc.ID_VENDA := body.GetValue<integer>('id_venda', 0);
+            modc.ID_PRODUTO := body.GetValue<integer>('id_produto', 0);
+            modc.PRODUTO := body.GetValue<string>('produto', '');
+            modc.VALOR := TrataValor(body.GetValue<string>('valor', ''));
+            modc.TOTAL := TrataValor(body.GetValue<string>('total', ''));
+            modc.QUANTIDADE := TrataValor(body.GetValue<string>('quantidade', ''));
+            modc.USUARIO_CADASTRO := body.GetValue<string>('usuario_cadastro', '');
             modc.update(erro);
 
             body.Free;

@@ -177,7 +177,7 @@ begin
     if ID_VENDAS_ITENS <= 0 then
     begin
         Result := false;
-        erro := 'Informe o id. cliente';
+        erro := 'Informe o id. da venda';
         exit;
     end;
 
@@ -189,11 +189,8 @@ begin
         begin
             Active := false;
             sql.Clear;
-            SQL.Add('UPDATE VENDAS_ITENS SET NOME=:NOME, ');
+            SQL.Add('UPDATE VENDAS_ITENS SET VALOR=:VALOR, TOTAL=:TOTAL, QUANTIDADE=:QUANTIDADE, USUARIO_CADASTRO=:USUARIO_CADASTRO');
             SQL.Add('WHERE ID=:ID');
-            ParamByName('ID_VENDA').Value := ID_VENDA;
-            ParamByName('ID_PRODUTO').Value := ID_PRODUTO;
-            ParamByName('PRODUTO').Value := PRODUTO;
             ParamByName('VALOR').Value := VALOR;
             ParamByName('TOTAL').Value := TOTAL;
             ParamByName('QUANTIDADE').Value := QUANTIDADE;
