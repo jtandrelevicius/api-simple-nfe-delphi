@@ -23,8 +23,8 @@ type
      FBAIRRO: String;
      FUF: String;
      FCIDADE: String;
-    // FDATA_CADASTRO: TDateTime;
-    // FDATA_ALTERACAO: TDateTime;
+     FDATA_CADASTRO: TDateTime;
+     FDATA_ALTERACAO: TDateTime;
      FUSUARIO_CADASTRO: String;
      FCPF_CNPJ: String;
      FSTATUS: String;
@@ -44,8 +44,8 @@ type
      property BAIRRO: String read FBAIRRO write FBAIRRO;
      property UF: String read FUF write FUF;
      property CIDADE: String read FCIDADE write FCIDADE;
-     //property DATA_CADASTRO: TDateTime read FDATA_CADASTRO write FDATA_CADASTRO;
-     //property DATA_ALTERACAO: TDateTime read FDATA_ALTERACAO write FDATA_ALTERACAO;
+     property DATA_CADASTRO: TDateTime read FDATA_CADASTRO write FDATA_CADASTRO;
+     property DATA_ALTERACAO: TDateTime read FDATA_ALTERACAO write FDATA_ALTERACAO;
      property USUARIO_CADASTRO: String read FUSUARIO_CADASTRO write FUSUARIO_CADASTRO;
      property CPF_CNPJ: String read FCPF_CNPJ write FCPF_CNPJ;
      property STATUS: String read FSTATUS write FSTATUS;
@@ -168,8 +168,8 @@ begin
         begin
             Active := false;
             sql.Clear;
-            SQL.Add('INSERT INTO CLIENTES(NOME, EMAIL, TELEFONE, CELULAR, CEP, TIPO_LOGRADOURO, LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO, UF, CIDADE, USUARIO_CADASTRO, CPF_CNPJ, STATUS)');
-            SQL.Add('VALUES(:NOME, :EMAIL, :TELEFONE, :CELULAR, :CEP, :TIPO_LOGRADOURO, :LOGRADOURO, :NUMERO, :COMPLEMENTO, :BAIRRO, :UF, :CIDADE, :USUARIO_CADASTRO, :CPF_CNPJ, :STATUS)');
+            SQL.Add('INSERT INTO CLIENTES(NOME, EMAIL, TELEFONE, CELULAR, CEP, TIPO_LOGRADOURO, LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO, UF, CIDADE, DATA_CADASTRO, USUARIO_CADASTRO, CPF_CNPJ, STATUS)');
+            SQL.Add('VALUES(:NOME, :EMAIL, :TELEFONE, :CELULAR, :CEP, :TIPO_LOGRADOURO, :LOGRADOURO, :NUMERO, :COMPLEMENTO, :BAIRRO, :UF, :CIDADE, :DATA_CADASTRO, :USUARIO_CADASTRO, :CPF_CNPJ, :STATUS)');
 
             ParamByName('NOME').Value := NOME;
             ParamByName('EMAIL').Value := EMAIL;
@@ -183,7 +183,7 @@ begin
             ParamByName('BAIRRO').Value := BAIRRO;
             ParamByName('UF').Value := UF;
             ParamByName('CIDADE').Value := CIDADE;
-            //ParamByName('DATA_CADASTRO').Value := DATA_CADASTRO;
+            ParamByName('DATA_CADASTRO').Value := Now;
             ParamByName('USUARIO_CADASTRO').Value := USUARIO_CADASTRO;
             ParamByName('CPF_CNPJ').Value := CPF_CNPJ;
             ParamByName('STATUS').Value := STATUS;
@@ -235,7 +235,7 @@ begin
             Active := false;
             sql.Clear;
             SQL.Add('UPDATE CLIENTES SET NOME=:NOME, EMAIL=:EMAIL, TELEFONE=:TELEFONE, CELULAR=:CELULAR, CEP=:CEP, TIPO_LOGRADOURO=:TIPO_LOGRADOURO, LOGRADOURO=:LOGRADOURO, NUMERO=:NUMERO, COMPLEMENTO=:COMPLEMENTO, BAIRRO=:BAIRRO,');
-            sql.Add('UF=:UF, CIDADE=:CIDADE, USUARIO_CADASTRO=:USUARIO_CADASTRO, CPF_CNPJ=:CPF_CNPJ, STATUS=:STATUS');
+            sql.Add('UF=:UF, CIDADE=:CIDADE, DATA_ALTERACAO=:DATA_ALTERACAO, USUARIO_CADASTRO=:USUARIO_CADASTRO, CPF_CNPJ=:CPF_CNPJ, STATUS=:STATUS');
             SQL.Add('WHERE ID=:ID');
             ParamByName('NOME').Value := NOME;
             ParamByName('EMAIL').Value := EMAIL;
@@ -249,7 +249,7 @@ begin
             ParamByName('BAIRRO').Value := BAIRRO;
             ParamByName('UF').Value := UF;
             ParamByName('CIDADE').Value := CIDADE;
-            //ParamByName('DATA_CADASTRO').Value := DATA_CADASTRO;
+            ParamByName('DATA_ALTERACAO').Value := Now;
             ParamByName('USUARIO_CADASTRO').Value := USUARIO_CADASTRO;
             ParamByName('CPF_CNPJ').Value := CPF_CNPJ;
             ParamByName('STATUS').Value := STATUS;

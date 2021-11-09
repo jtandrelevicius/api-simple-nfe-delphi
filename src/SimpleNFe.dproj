@@ -202,6 +202,7 @@
         <DCCReference Include="Model\Model.Users.pas"/>
         <DCCReference Include="Units\uFormat.pas"/>
         <DCCReference Include="Units\uFunctions.pas"/>
+        <DCCReference Include="Units\uMD5.pas"/>
         <None Include="ModelSupport_SimpleNFe\default.txaPackage"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

@@ -28,7 +28,8 @@ uses
   Controller.Users in 'Controller\Controller.Users.pas',
   Model.Users in 'Model\Model.Users.pas',
   uFormat in 'Units\uFormat.pas',
-  uFunctions in 'Units\uFunctions.pas';
+  uFunctions in 'Units\uFunctions.pas',
+  uMD5 in 'Units\uMD5.pas';
 
 procedure OnListen(aListen: THorse);
 begin
