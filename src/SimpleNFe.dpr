@@ -29,7 +29,13 @@ uses
   Model.Users in 'Model\Model.Users.pas',
   uFormat in 'Units\uFormat.pas',
   uFunctions in 'Units\uFunctions.pas',
-  uMD5 in 'Units\uMD5.pas';
+  uMD5 in 'Units\uMD5.pas',
+  Controller.NFE in 'Controller\Controller.NFE.pas',
+  Controller.NFCe in 'Controller\Controller.NFCe.pas',
+  Model.NFCe in 'Model\Model.NFCe.pas',
+  Model.NFE in 'Model\Model.NFE.pas',
+  Model.Certified in 'Model\Model.Certified.pas',
+  View.NFs in 'NF\View.NFs.pas' {Form1};
 
 procedure OnListen(aListen: THorse);
 begin
@@ -48,6 +54,7 @@ begin
   TControllerSalesItems.Router;
   TControllerSales.Router;
   TControllerUsers.Router;
+  TControllerNFE.Router;
   THorse.Listen(9000, OnListen);
   end;
 end.

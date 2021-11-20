@@ -203,6 +203,15 @@
         <DCCReference Include="Units\uFormat.pas"/>
         <DCCReference Include="Units\uFunctions.pas"/>
         <DCCReference Include="Units\uMD5.pas"/>
+        <DCCReference Include="Controller\Controller.NFE.pas"/>
+        <DCCReference Include="Controller\Controller.NFCe.pas"/>
+        <DCCReference Include="Model\Model.NFCe.pas"/>
+        <DCCReference Include="Model\Model.NFE.pas"/>
+        <DCCReference Include="Model\Model.Certified.pas"/>
+        <DCCReference Include="NF\View.NFs.pas">
+            <Form>Form1</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <None Include="ModelSupport_SimpleNFe\default.txaPackage"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

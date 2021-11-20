@@ -106,7 +106,6 @@ begin
      modc.BAIRRO := body.GetValue<string>('bairro', '');
      modc.UF := body.GetValue<string>('uf', '');
      modc.CIDADE := body.GetValue<string>('cidade', '');
-     //cli.DATA_CADASTRO := strToDate(body.GetValue<string>('data_cadastro', ''));
      modc.STATUS := body.GetValue<string>('status', '');
      modc.CPF_CNPJ := body.GetValue<string>('cpf_cnpj', '');
      modc.insert(erro);
